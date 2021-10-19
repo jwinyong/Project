@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="asinfo">
+	
+		
+		<resultMap id="asinfoMap" type="web.as.vo.asinfoVO">
+			<result property="num" column="num"/>
+			<result property="title" column="title"/>
+			<result property="id" column="id"/>	
+			<result property="name" column="name"/>		
+			<result property="addr" column="addr"/>
+			<result property="phone" column="phone"/>
+			<result property="email" column="email"/>
+			<result property="step" column="step"/>
+			<result property="stepNm" column="step_nm"/>
+			<result property="contents" column="contents"/>
+			<result property="answer" column="answer"/>
+		</resultMap>
+	
+		
+		
+		
+		<select id="selectAsInfoList" resultMap="asinfoMap">
+			select a.*,
+				   case when a.step='DONE' then '완료'
+				        when a.step='REG' then '등록'
+				        when a.step='RPR' then '수리중'
+				   end step_nm, b.name
+			 from asinfo a left outer join member b on a.id = b.id
+			where 1=1
+			<if test="product !=null and product!=''">
+			and product = #{product}
+			</if>
+			<if test="title !=null and title!=''">
+			and title like concat('%',#{title},'%')
+			</if>
+			
+		</select>
+		
+		<select id="selectAsInfo" resultMap="asinfoMap">
+			select a.*,
+				   case when a.step='DONE' then '완료'
+				        when a.step='REG' then '등록'
+				        when a.step='RPR' then '수리중'
+				   end step_nm, b.name
+			 from asinfo a left outer join member b on a.id = b.id
+			where 1=1
+			 and a.num = #{num}
+		</select>
+		
+		<insert id="insertAsinfo">
+			insert into asinfo
+			(num, id, product, buydate, addr, email, phone, title, contents, step, answer)
+		    select ifnull(max(num),0)+1, 
+		    	 #{id},
+		    	 #{product}, 
+		    	 #{buydate}, 
+		    	 #{addr}, 
+		    	 #{email}, 
+		    	 #{phone}, 
+		    	 #{title}, 
+		    	 #{contents}, 
+		    	 #{step},
+		    	 #{answer}
+		    from asinfo			
+		</insert>
+		
+		<update id="updateAsinfo">
+			update asinfo set
+				product = #{product}, 
+				buydate = #{buydate}, 
+				addr    = #{addr},
+				email   = #{email}, 
+				phone   = #{phone}, 
+				title   = #{title}, 
+				contents = #{contents},
+				answer  = #{answer}, 
+				step = #{step}
+			where num = #{num}
+		</update>
+		
+		<delete id="deleteAsinfo">
+			delete from asinfo
+			 where num = #{num}
+		</delete>
+</mapper>

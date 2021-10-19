@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	
+		<resultMap id="memberMap" type="web.as.vo.memberVO">
+			<result property="id" column="id"/>
+			<result property="name" column="name"/>
+			<result property="addr" column="addr"/>
+			<result property="phone" column="phone"/>
+			<result property="email" column="email"/>
+		</resultMap>
+	
+		
+	
+		
+		<select id="selectMemberList" resultMap="memberMap">
+			select * from member
+			where 1=1
+			<if test="id!=null and id!=''">
+			and id=#{id}
+			</if>
+			<if test="name!=null and name!=''">
+			and name=#{name}
+			</if>
+			order by name
+		</select>
+		
+		<select id="selectMember" resultMap="memberMap">
+			select * from member
+			where 1=1
+			<if test="id!=null and id!=''">
+			and id=#{id}
+			</if>			
+			<if test="passwd!=null and passwd!=''">
+			and passwd=#{passwd}
+			</if>
+		</select>
+		
+		<select id="selectMemberCount" resultType="integer">
+			select count(*) from member
+			where id = #{id}
+		</select>
+		
+		
+		<insert id="insertMember">
+			insert into member(
+				id, passwd, name, addr, phone, email
+			)values(
+				#{id}, #{passwd}, #{name}, #{addr}, #{phone}, #{email}
+			)
+		
+		</insert>
+</mapper>

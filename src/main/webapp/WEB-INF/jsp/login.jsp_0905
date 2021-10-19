@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+LOGIN
+
+
+<form id="ff" name="ff">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" id="id" name="id" /></td>
+		</tr>
+		<tr>
+			<td>패스워드</td>
+			<td><input type="password" id="passwd" name="passwd" /></td>
+		</tr>
+	</table>
+</form>	
+	
+<button onclick="login();">로그인</button>	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+	function login(){
+		if($('#id').val()==''){
+			alert('아이디를 입력하세요');
+			return;
+		}
+		
+		if($('#passwd').val()==''){
+			alert('패스워드를 입력하세요');
+			return;
+		}
+
+		
+		var formData = $("#ff").serialize();
+		$.ajax({
+				data :formData,
+				type:"POST",
+				url : "/member/login",
+				cache :  false,
+				success : login_Handler
+		});
+		
+		
+	}
+	
+	function login_Handler(data)
+	{
+		if( data ){
+			location.href="/index";
+		}else{
+			alert("존재하지 않는 아이디 또는 패스워드 입니다.");
+		}
+	}
+	
+</script>
+
+</body>
+</html>

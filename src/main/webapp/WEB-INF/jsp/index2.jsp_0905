@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+INDEX 페이지
+
+<br><br><br>
+
+
+<button onclick="getAS()">  AS 게시판조회</button>
+
+
+
+<form id="frm" name="frm">
+	<input type="text" id="title" name="title" >
+
+</form>
+
+<table id="asTable">
+	<tr>
+		<td>No</td>
+		<td>제목</td>
+		<td>아이디</td>
+	</tr>
+	<tbody></tbody>
+</table>
+
+
+<script>
+
+	function getAS(){
+		var formData = $("#frm").serialize();
+		$.ajax({
+				data :formData,
+				type:"POST",
+				url : "/member/getList",
+				cache : false,
+				success : setAsinfo
+		});
+		
+	}
+	
+	function setAsinfo(data){
+		var str = "";
+		if(data.length>0){
+			$('#asTable').empty();
+			for(var i=0;i<data.length;i++){
+				str = "";
+				str+="<tr>";
+				str+="<td>"+(i+1)+"</td>";
+				str+="<td>"+data[i].title+"</td>";
+				str+="<td>"+data[i].id+"</td>";
+				str+="</tr>";
+				$('#asTable').append(str);
+			}
+		}
+	}
+	
+</script>
+</body>
+</html>
