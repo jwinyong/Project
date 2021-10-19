@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>회원 가입</title>
+    <title>AS 관리- Register</title>
 
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">회원 가입</h1>
+                                <h1 class="h4 text-gray-900 mb-4">관리자 등록</h1>
                             </div>
                             <form id='ff' name='ff'>
                                 <div class="form-group row">
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <a href="#" onclick="join()" class="btn btn-primary btn-user btn-block">
-                                    회원 가입
+                                    관리자 등록
                                 </a>
                                 
                                 

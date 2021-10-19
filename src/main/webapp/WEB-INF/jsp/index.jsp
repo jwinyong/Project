@@ -141,7 +141,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">AS 등록</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -208,8 +208,8 @@
 				</form>
 				</div>
                 <div class="modal-footer">
-                	<a class="btn btn-primary" href="#" onclick="as_delete()">삭제</a>
                     <a class="btn btn-primary" href="#" onclick="save()">저장</a>
+                	<a class="btn btn-primary" href="#" onclick="as_delete()">삭제</a>
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">닫기</button>
                     
                 </div>
