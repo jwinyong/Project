@@ -125,7 +125,7 @@
 				return;
 			}
 			
-			if(confirm('회원가입을 진행하시겠습니까?')){
+			if(confirm('관리자 등록을 진행하시겠습니까?')){
 			
 				var formData = $("#ff").serialize();
 				// 포스트 http로 메시지 파트
